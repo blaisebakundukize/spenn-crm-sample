@@ -5,7 +5,7 @@
 
   --color-green-dark: #0c6434;
 
-  --color-grey-dark: #dad7d7;
+  --color-grey-dark: #8d8c8c;
   --color-grey-dark-2: #b8b3b3;
   --color-grey-light: #f8f8f8;
 
@@ -16,6 +16,7 @@
   --color-yellow: #c59c15;
 
   --color-blue: #1890ff;
+  --color-blue-dark: #001529;
 
   /*--FONT--*/
   --default-font-size: 1.6rem;
@@ -68,9 +69,9 @@ html {
 }
 
 .content-layout {
-  background-color: var(--color-white);
+  /* background-color: var(--color-white); */
   margin: 0 1.6rem 1.6rem 1.6rem;
-  padding: 1rem;
+  /* padding: 1rem; */
   min-height: 280;
 }
 
@@ -83,10 +84,75 @@ html {
 }
 
 .page-header {
-  padding: 1rem 1.6rem;
+  padding: 0.5rem 1.6rem;
 }
 
 .page-header span {
   font-size: 1.6rem;
   text-transform: capitalize;
+}
+
+.card-summary {
+  background: var(--color-white);
+  padding: 1.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  color: var(--color-black-2);
+}
+
+.card-summary > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.margin-bottom-small {
+  margin-bottom: 2rem;
+}
+
+.big-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.text-blue-dark {
+  color: var(--color-blue-dark);
+}
+
+.card-summary-title {
+  font-weight: 700;
+}
+
+.card-summary-footer > :not(:last-child) {
+  margin-right: 0.5rem;
+  color: var(--color-grey-dark);
+  font-weight: 700;
+}
+
+.transactions-summary-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-summary-wrapper > :not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.transactions-card-summary {
+  /* padding-bottom: 0.5rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.transactions-card-summary > :not(:last-child) {
+  margin: 0;
+}
+
+.transactions-pie-wrapper {
+  height: 20rem;
+  background: var(--color-white);
 }
