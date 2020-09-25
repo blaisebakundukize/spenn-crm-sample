@@ -4,7 +4,7 @@ spenn-crm-sample is a simple front-end crm to suggest ideas of what an official 
 
 ## Link to the app
 
-- [SPENN CRM SAMPLE](http://34.72.133.196/)
+- [SPENN CRM SAMPLE](https://spenn-crm-sample.herokuapp.com/)
 
 ## Technologies
 
