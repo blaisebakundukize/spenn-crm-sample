@@ -4,7 +4,7 @@ import {
   _getClientMovements,
 } from "./_DATA";
 
-export const getRecentTransactions = () => _getRecentTransactions;
+export const getRecentTransactions = () => _getRecentTransactions();
 
 export const getDailyTransactionsSummary = () => _getDailyTransactionsSummary();
 

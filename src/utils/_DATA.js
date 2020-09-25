@@ -62,80 +62,80 @@ const accounts = {
 };
 
 const recentTransactions = {
-  transfers: {
-    1: {
+  transfers: [
+    {
       id: 1,
       accountFrom: "123048",
       accountTo: "123456",
       amount: "$30",
       time: moment().format("lll"),
     },
-    2: {
+    {
       id: 2,
       accountFrom: "123886",
       accountTo: "123987",
       amount: "$40",
       time: moment().format("lll"),
     },
-    3: {
+    {
       id: 3,
       accountFrom: "123048",
       accountTo: "123886",
       amount: "$100",
       time: moment().format("lll"),
     },
-    4: {
+    {
       id: 4,
       accountFrom: "123908",
       accountTo: "123987",
       amount: "$10",
       time: moment().format("lll"),
     },
-    5: {
+    {
       id: 5,
       accountFrom: "123456",
       accountTo: "123987",
       amount: "$200",
       time: moment().format("lll"),
     },
-  },
-  withdrawsAndDeposits: {
-    1: {
+  ],
+  withdrawsAndDeposits: [
+    {
       id: 1,
       account: "123048",
       description: "Withdraw",
       amount: "$30",
       time: moment().format("lll"),
     },
-    2: {
+    {
       id: 2,
       account: "123886",
       description: "Deposit",
       amount: "$40",
       time: moment().format("lll"),
     },
-    3: {
+    {
       id: 3,
       account: "123048",
       description: "Withdraw",
       amount: "$100",
       time: moment().format("lll"),
     },
-    4: {
+    {
       id: 4,
       account: "123908",
       description: "Withdraw",
       amount: "$10",
       time: moment().format("lll"),
     },
-    5: {
+    {
       id: 5,
       account: "123456",
       description: "Deposit",
       amount: "$200",
       time: moment().format("lll"),
     },
-  },
+  ],
 };
 
 const clientMovements = {
@@ -160,15 +160,15 @@ const dailyTransactionsSummary = {
     last: 3150,
   },
   hourly: {
-    "00-06am": 35,
+    "00-06am": 135,
     "06-12am": 850,
-    "12-18pm": 1020,
+    "12-18pm": 920,
     "18-00pm": 95,
   },
   types: {
     payments: 450,
     withdraws: 200,
-    transfer: 1250,
+    transfers: 1250,
     deposits: 100,
   },
 };
@@ -187,18 +187,18 @@ export function _getAccounts() {
 
 export function _getRecentTransactions() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...recentTransactions }), 1000);
+    setTimeout(() => res({ ...recentTransactions }), 500);
   });
 }
 
 export function _getClientMovements() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...clientMovements }), 1000);
+    setTimeout(() => res({ ...clientMovements }), 500);
   });
 }
 
 export function _getDailyTransactionsSummary() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...dailyTransactionsSummary }), 1000);
+    setTimeout(() => res({ ...dailyTransactionsSummary }), 500);
   });
 }
