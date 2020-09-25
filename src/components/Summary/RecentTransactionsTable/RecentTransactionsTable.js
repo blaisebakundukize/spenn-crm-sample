@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
+import { useSelector } from "react-redux";
 
 import SimpleTable from "../../SimpleTable/SimpleTable";
 
@@ -19,8 +20,8 @@ const recentTransferColumns = [
     dataIndex: "amount",
   },
   {
-    title: "Date",
-    dataIndex: "date",
+    title: "Time",
+    dataIndex: "time",
   },
 ];
 
@@ -39,111 +40,80 @@ const recentWithdrawsAndDepositsColumns = [
     dataIndex: "description",
   },
   {
-    title: "Date",
-    dataIndex: "date",
+    title: "Time",
+    dataIndex: "time",
   },
 ];
 
-const recentTransferData = [
-  {
-    key: "1",
-    from: "Blaise Bakundukize",
-    to: "Floribert Mwibutsa",
-    amount: "$400",
-    date: "2020/09/12",
-  },
-  {
-    key: "2",
-    from: "Blaise Bakundukize",
-    to: "Floribert Mwibutsa",
-    amount: "$400",
-    date: "2020/09/12",
-  },
-  {
-    key: "3",
-    from: "Blaise Bakundukize",
-    to: "Floribert Mwibutsa",
-    amount: "$400",
-    date: "2020/09/12",
-  },
-  {
-    key: "4",
-    from: "Blaise Bakundukize",
-    to: "Floribert Mwibutsa",
-    amount: "$400",
-    date: "2020/09/12",
-  },
-  {
-    key: "5",
-    from: "Blaise Bakundukize",
-    to: "Floribert Mwibutsa",
-    amount: "$400",
-    date: "2020/09/12",
-  },
-];
+// Format data for recent transfer table
+const formatDataOfTransfer = (data) => {
+  let recentTransferData = [];
+  for (const elt of data) {
+    recentTransferData.push({
+      key: elt.id,
+      from: elt.accountFrom,
+      to: elt.accountTo,
+      amount: elt.amount,
+      time: elt.time,
+    });
+  }
+  return recentTransferData;
+};
 
-const recentWithdrawsAndDepositsData = [
-  {
-    key: "1",
-    account: "Blaise Bakundukize",
-    amount: "$400",
-    description: "Withdraw",
-    date: "2020/09/12",
-  },
-  {
-    key: "2",
-    account: "Blaise Bakundukize",
-    amount: "$400",
-    description: "Deposit",
-    date: "2020/09/12",
-  },
-  {
-    key: "3",
-    account: "Blaise Bakundukize",
-    amount: "$400",
-    description: "Withdraw",
-    date: "2020/09/12",
-  },
-  {
-    key: "4",
-    account: "Blaise Bakundukize",
-    amount: "$400",
-    description: "Withdraw",
-    date: "2020/09/12",
-  },
-  {
-    key: "5",
-    account: "Blaise Bakundukize",
-    amount: "$400",
-    description: "Deposit",
-    date: "2020/09/12",
-  },
-];
+// Format data for recent withdraws and deposits table
+const formatDataOfWithdrawsAndDeposits = (data) => {
+  let recentWithdrawsAndDepositsData = [];
+  for (const elt of data) {
+    recentWithdrawsAndDepositsData.push({
+      key: elt.id,
+      account: elt.account,
+      amount: elt.amount,
+      description: elt.description,
+      time: elt.time,
+    });
+  }
+  return recentWithdrawsAndDepositsData;
+};
 
 const RecentTransactionTable = () => {
+  const recentTransactions = useSelector((state) => state.recentTransactions);
+  let recentTransferData = [];
+  let recentWithdrawsAndDepositsData = [];
+
+  if (Object.keys(recentTransactions).length > 0) {
+    recentTransferData = formatDataOfTransfer(recentTransactions.transfers);
+    recentWithdrawsAndDepositsData = formatDataOfWithdrawsAndDeposits(
+      recentTransactions.withdrawsAndDeposits
+    );
+  }
+
   return (
-    <Row gutter={24}>
-      <Col span={12}>
-        <SimpleTable
-          bordered={true}
-          title={<div className='card-summary-title'>Recent Transfers</div>}
-          columns={recentTransferColumns}
-          data={recentTransferData}
-        />
-      </Col>
-      <Col span={12}>
-        <SimpleTable
-          bordered={true}
-          title={
-            <div className='card-summary-title'>
-              Recent Withdraws & Deposits
-            </div>
-          }
-          columns={recentWithdrawsAndDepositsColumns}
-          data={recentWithdrawsAndDepositsData}
-        />
-      </Col>
-    </Row>
+    <>
+      {Object.keys(recentTransactions).length === 0 ? null : (
+        <Row gutter={24}>
+          <Col span={12}>
+            <SimpleTable
+              bordered={true}
+              title={<div className='card-summary-title'>Recent Transfers</div>}
+              columns={recentTransferColumns}
+              data={recentTransferData}
+            />
+          </Col>
+          <Col span={12}>
+            <SimpleTable
+              bordered={true}
+              title={
+                <div className='card-summary-title'>
+                  Recent Withdraws & Deposits
+                </div>
+              }
+              columns={recentWithdrawsAndDepositsColumns}
+              data={recentWithdrawsAndDepositsData}
+            />
+          </Col>
+        </Row>
+      )}
+    </>
   );
 };
 

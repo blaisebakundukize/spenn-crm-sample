@@ -1,18 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import LoadingBar from "react-redux-loading-bar";
 
 import "antd/dist/antd.css";
 import "./index.css";
 import App from "./App";
+import reducer from "./store/reducers";
+import middleware from "./store/middleware";
 import * as serviceWorker from "./serviceWorker";
 
+const store = createStore(reducer, middleware);
+
 const app = (
-  <React.StrictMode>
+  <Provider store={store}>
+    {/* <React.StrictMode> */}
     <BrowserRouter>
+      <LoadingBar />
       <App />
     </BrowserRouter>
-  </React.StrictMode>
+    {/* </React.StrictMode> */}
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById("root"));
